@@ -32,9 +32,9 @@ contract PLCRVoting {
         uint voteQuorum;	    /// number of votes required for a proposal to pass
         uint votesFor;		    /// tally of votes supporting proposal
         uint votesAgainst;      /// tally of votes countering proposal
-        uint256 poolBalance;      /// available balance of reserve value in contract(added)
-        uint256 totalSupply;      /// totalSupply for assumed bonding curve token(added)
-        uint32 reserveRatio;      /// reserve ratio, represented in ppm, 1-1000000(added)
+        uint256 poolBalance;      /// available balance of reserve value in contract
+        uint256 totalSupply;      /// totalSupply for assumed bonding curve token
+        uint32 reserveRatio;      /// reserve ratio, represented in ppm, 1-1000000
         mapping(address => bool) didCommit;  /// indicates whether an address committed a vote for this poll
         mapping(address => bool) didReveal;   /// indicates whether an address revealed a vote for this poll
     }
@@ -62,7 +62,7 @@ contract PLCRVoting {
     @dev Initializes voteQuorum, commitDuration, revealDuration, and pollNonce in addition to token contract and trusted mapping
     @param _tokenAddr The address where the ERC20 token contract is deployed
     */
-    function PLCRVoting(address _tokenAddr) public {
+    constructor(address _tokenAddr) public {
         token = EIP20Interface(_tokenAddr);
         pollNonce = INITIAL_POLL_NONCE;
     }

@@ -1,0 +1,13 @@
+{
+  "name": "Bc-PLCR-Voting",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Osuke",
+  "license": "MIT",
+  "dependencies": {
+    "bignumber.js": "^7.0.1",
+    "ethereumjs-abi": "^0.6.5",
+    "ethjs-provider-http": "^0.1.6",
+    "ethjs-rpc": "^0.2.0"
+  }
+}

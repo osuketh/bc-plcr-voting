@@ -1,4 +1,5 @@
 const BcPLCRVoting = artifacts.require('./BcPlcrVoting.sol');
+const ExposedBondingCurve = artifacts.require('./ExposedBondingCurve.sol');
 const PLCRVoting = artifacts.require('./plcrvoting/PLCRVoting.sol');
 const EIP20 = artifacts.require('tokens/eip20/EIP20.sol');
 const DLL = artifacts.require("dll/DLL.sol");
@@ -8,12 +9,11 @@ module.exports = (deployer, network, accounts) => {
   deployer.deploy(DLL);
   deployer.deploy(AttributeStore);
 
-  deployer.link(DLL, BcPLCRVoting);
-  deployer.link(AttributeStore, BcPLCRVoting);
-  // deployer.link(DLL, [BcPLCRVoting, PLCRVoting]);
-  // deployer.link(AttributeStore, [BcPLCRVoting, PLCRVoting]);
+  deployer.link(DLL, [BcPLCRVoting, ExposedBondingCurve]);
+  deployer.link(AttributeStore, [BcPLCRVoting, ExposedBondingCurve]);
 
-  if (network === 'test' || network === 'coverage') {  
+
+  if (network === 'development' || network === 'coverage' || network === "test") {
     let plcr;
     let token;
 
@@ -25,10 +25,10 @@ module.exports = (deployer, network, accounts) => {
       'TEST',
     )
       .then(() => deployer.deploy(
-        BcPLCRVoting,
+        ExposedBondingCurve,
         EIP20.address,
       ))
-      .then(() => BcPLCRVoting.deployed())
+      .then(() => ExposedBondingCurve.deployed())
       .then((_plcr) => {
         plcr = _plcr;
       })
