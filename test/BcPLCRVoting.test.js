@@ -13,7 +13,7 @@ contract("Bonding-Curve-PLCRVoting", ([alice, bob, charlie]) => {
       await utils.increaseTime(Number(options.commitPeriod) + 1);
       await utils.as(options.actor, instance.revealVote, pollID, options.vote, options.salt);
       await utils.increaseTime(Number(options.revealPeriod) + 1);
-      
+
       const isPassed = await instance.isPassed.call(pollID);
       assert.strictEqual(isPassed, true)
     });
@@ -60,8 +60,8 @@ contract("Bonding-Curve-PLCRVoting", ([alice, bob, charlie]) => {
       const bobAmount = await utils.as(bob, instance._getCommitAmount, bob, pollID);
       const charlieAmount = await utils.as(charlie, instance._getCommitAmount, charlie, pollID);
 
-      assert.isAbove(aliceAmount.toNumber(), bobAmount.toNumber());
-      assert.isAbove(bobAmount.toNumber(), charlieAmount.toNumber());
+      assert.isAtMost(bobAmount.toNumber(), aliceAmount.toNumber());
+      assert.isAtMost(charlieAmount.toNumber(), bobAmount.toNumber());
     })
   })
 })
