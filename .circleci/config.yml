@@ -1,7 +1,9 @@
 version: 2
 jobs:
   build:
-    machine: true
+    docker:
+      - image: circleci/node:8.1.4
+    working_directory: ~/contracts
     steps:
       - checkout
       - run:
