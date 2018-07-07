@@ -5,8 +5,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: build
-          command: docker build -t tester .
+          name: dependencies
+          command: |
+            yarn
+            yarn truffle install
       - run:
           name: test
-          command: docker run tester
+          command: yarn test:all
