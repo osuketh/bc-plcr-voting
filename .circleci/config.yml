@@ -12,5 +12,8 @@ jobs:
             yarn
             yarn truffle install
       - run:
+          name: compile
+          command: yarn truffle compile
+      - run:
           name: test
           command: yarn test:all
