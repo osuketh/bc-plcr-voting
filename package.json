@@ -7,6 +7,11 @@
     "bignumber.js": "^7.0.1",
     "ethereumjs-abi": "^0.6.5",
     "ethjs-provider-http": "^0.1.6",
-    "ethjs-rpc": "^0.2.0"
+    "ethjs-rpc": "^0.2.0",
+    "truffle": "^4.1.13"
+  },
+  "scripts": {
+    "start": "truffle develop",
+    "test": "truffle compile && truffle test"
   }
 }

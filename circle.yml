@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: build
+          command: docker build -t tester .
+      - run:
+          name: test
+          command: docker run tester
